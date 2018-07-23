@@ -33,7 +33,7 @@ p.terminate()
 
 wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
 wf.setnchannels(CHANNELS)
-wf.setsampwidth(p.get_sample_size(FORMAT))
+wf.setsampwidth(p.get_sample_size(FORMAT)*2)
 wf.setframerate(RATE)
 wf.writeframes(b''.join(frames))
 wf.close()
