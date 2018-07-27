@@ -40,7 +40,6 @@ with open('sensorInfo.csv', 'w') as appendFile:
             currentTime = int(round(time.time()*1000))
             timer = currentTime - start
             new = [acX, acY, acZ, gyX, gyY, gyZ]
-            print("Not")
             newFileWriter.writerow(new)
             data.append(new)
         except Exception:

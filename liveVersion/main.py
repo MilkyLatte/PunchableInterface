@@ -4,13 +4,12 @@ from multiprocessing import Process
 from segmentator import segmentator
 import numpy as np
 
-soundOld = []
 soundNew = []
-sensorOld = []
 sensorNew = []
 recorder = soundRecorder
 sensors = sensorRecorder
 segmenter = segmentator
+featureExtraction = featureExtractor
 
 
 def runInParallel():
@@ -33,13 +32,18 @@ def soundHandler(recorder):
 
 
 def brain():
+    while 1:
         runInParallel()
         soundConfirm, soundPunch = segmenter.soundSegment(soundNew)
         sensorConfirm, sensorPunch = segmenter.sensorSegment(sensorNew)
-        if soundConfirm:
-            print("Sound")
-        if sensorConfirm:
-            print("Sensor")
+        if soundConfirm and sensorConfirm:
+            if len(soundPunch) == len(sensorPunch):
+                features = []
+                for x in range(len(sensorPunch)):
+                    features.append(featureExtraction.extract(featureExtraction, sensorPunch[x], soundPunch[x]))
+
+
+
 
 
 
