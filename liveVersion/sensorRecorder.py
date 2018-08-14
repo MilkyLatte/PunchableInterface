@@ -16,7 +16,10 @@ class sensorRecorder:
             while (self.arduinoData.inWaiting() == 0):
                 pass
             arduinoString = self.arduinoData.readline()
-            dataArray = arduinoString.decode().split(',')
+            try:
+                dataArray = arduinoString.decode().split(',')
+            except Exception:
+                pass
             try:
                 acX = float(dataArray[0])
                 acY = float(dataArray[1])

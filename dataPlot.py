@@ -13,11 +13,6 @@ arduinoData = serial.Serial('/dev/serial/by-id/usb-1a86_USB2.0-Serial-if00-port0
 data = []
 
 
-def makeFig():
-    plt.plot(data[0:, 6], data[0:, 0])
-    plt.show
-
-
 executingTime = 0
 
 with open('sensorInfo.csv', 'w') as appendFile:
@@ -26,8 +21,11 @@ with open('sensorInfo.csv', 'w') as appendFile:
     while executingTime < 25000:
         while (arduinoData.inWaiting() == 0):
             pass
-        arduinoString = arduinoData.readline()
-        dataArray = arduinoString.decode().split(',')
+        try:
+            arduinoString = arduinoData.readline()
+            dataArray = arduinoString.decode().split(',')
+        except Exception:
+            pass
         try:
             pointlessVariable = "Pointless"
             acX = float(dataArray[0])
@@ -38,7 +36,6 @@ with open('sensorInfo.csv', 'w') as appendFile:
             gyY = float(dataArray[4])
             gyZ = float(dataArray[5])
             currentTime = int(round(time.time()*1000))
-            timer = currentTime - start
             new = [acX, acY, acZ, gyX, gyY, gyZ]
             newFileWriter.writerow(new)
             data.append(new)
