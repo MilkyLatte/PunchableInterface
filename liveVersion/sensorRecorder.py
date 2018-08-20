@@ -21,13 +21,13 @@ class sensorRecorder:
             except Exception:
                 pass
             try:
-                acX = float(dataArray[0])
-                acY = float(dataArray[1])
-                acZ = float(dataArray[2])
+                acX = int(dataArray[0])
+                acY = int(dataArray[1])
+                acZ = int(dataArray[2])
 
-                gyX = float(dataArray[3])
-                gyY = float(dataArray[4])
-                gyZ = float(dataArray[5])
+                gyX = int(dataArray[3])
+                gyY = int(dataArray[4])
+                gyZ = int(dataArray[5])
                 new = [acX, acY, acZ, gyX, gyY, gyZ]
                 data.append(new)
             except Exception:

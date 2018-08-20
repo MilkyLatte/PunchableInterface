@@ -13,7 +13,7 @@ class classifier:
     linearClassifier = NotImplemented
 
     def loadData(self):
-        with open('sensors3.csv', 'r') as readFile:
+        with open('sensorData.csv', 'r') as readFile:
             newFileReader = csv.reader(readFile)
             for row in readFile:
                 line = []
@@ -21,21 +21,21 @@ class classifier:
                     line1 = []
                     for y in x.split(' '):
                         try:
-                            line1.append(float(y))
+                            line1.append(int(y))
                         except Exception:
                             pass
-                    if len(line1) == 6:
+                    if len(line1) == 7:
                         line.append(line1)
                 if len(line) == 250:
                     self.sensorData.append(line)
-        with open('sounds3.csv', 'r') as readFile:
+        with open('sounds.csv', 'r') as readFile:
             newFileReader = csv.reader(readFile)
             for row in readFile:
                 empty = []
                 for i in row.split(','):
                     empty.append(float(i))
                 self.soundData.append(empty)
-        with open('labels3.csv', 'r') as readFile:
+        with open('labels.csv', 'r') as readFile:
             newFileReader = csv.reader(readFile)
             for row in readFile:
                 self.labels.append(int(row))
@@ -50,6 +50,7 @@ class classifier:
         features = []
         featureExtraction = featureExtractor
         self.sensorData = np.array(self.sensorData)
+        self.sensorData = self.sensorData[0:, 0:, 1:]
         self.soundData = np.array(self.soundData)
         self.labels = np.array(self.labels)
 

@@ -36,7 +36,7 @@ with open('sensorInfo.csv', 'w') as appendFile:
             gyY = float(dataArray[4])
             gyZ = float(dataArray[5])
             currentTime = int(round(time.time()*1000))
-            new = [acX, acY, acZ, gyX, gyY, gyZ]
+            new = [0, acX, acY, acZ, gyX, gyY, gyZ, 0]
             newFileWriter.writerow(new)
             data.append(new)
         except Exception:

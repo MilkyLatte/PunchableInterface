@@ -2,7 +2,6 @@ import numpy as np
 
 
 class segmentator():
-
     def soundSegment(self, dataSound):
         print(max(dataSound))
         soundIncluded = 0
@@ -31,7 +30,7 @@ class segmentator():
         punch = []
         confirm = False
         for x in range(len(accelMean)):
-            if (accelMean[x]) >= 8000 and x > included:
+            if (accelMean[x]) >= 9000 and x > included:
                 print("punch")
                 confirm = True
                 currentPunch = []
@@ -45,3 +44,6 @@ class segmentator():
                 included = x+200
         punch = (np.array(punch))
         return confirm, punch
+
+    def saveSegment():
+        pass
